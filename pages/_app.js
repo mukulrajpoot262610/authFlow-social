@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <FirebaseAuthState>
-          <Component {...pageProps} />
+          <Component  {...pageProps} />
         </FirebaseAuthState>
       </Provider>
     </>
