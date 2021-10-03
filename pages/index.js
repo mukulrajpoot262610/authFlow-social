@@ -1,44 +1,93 @@
-import { Button, message } from 'antd'
 import Head from 'next/head'
+import { Form, Input, Button, Checkbox } from 'antd';
+import { GoogleOutlined, UserOutlined, LockOutlined } from '@ant-design/icons'
 
 export default function Home() {
+
+  const onFinish = (values) => {
+    console.log('Received values of form: ', values);
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div data-theme="cupcake" className="flex flex-col items-center justify-center min-h-screen">
       <Head>
-        <title>Create Next App</title>
+        <title>devFriend.io - Find your coding partener</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-            pages/index.js
-          </code>
-        </p>
-
-        <Button onClick={() => message.success('Hello there')}>Click Me</Button>
-
-      </main>
-
-      <footer className="flex items-center justify-center w-full h-24 border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="h-4 ml-2" />
-        </a>
-      </footer>
+      <div className="hero min-h-screen bg-base-200">
+        <div className="flex-col hero-content lg:flex-row w-full">
+          <div className="">
+            <img src="/svgs/login.svg" alt="" />
+          </div>
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div className="card-body">
+              <Form
+                name="normal_login"
+                className="login-form"
+                initialValues={{
+                  remember: true,
+                }}
+                onFinish={onFinish}
+              >
+                <Form.Item
+                  name="email"
+                  className="my-4"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please input your Username!',
+                    },
+                  ]}
+                  hasFeedback
+                >
+                  <div className="form-control">
+                    <Input
+                      type="email"
+                      placeholder="email"
+                      className="input input-bordered"
+                      prefix={<UserOutlined className="site-form-item-icon" />}
+                    />
+                  </div>
+                </Form.Item>
+                <Form.Item
+                  name="password"
+                  className="my-4"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Please input your Password!',
+                    },
+                  ]}
+                  hasFeedback
+                >
+                  <div className="form-control">
+                    <Input
+                      type="password"
+                      placeholder="password"
+                      className="input input-bordered"
+                      prefix={<LockOutlined className="site-form-item-icon" />}
+                      placeholder="Password"
+                    />
+                  </div>
+                </Form.Item>
+                <div className="form-control my-4">
+                  <button className="btn btn-primary">
+                    Login
+                  </button>
+                </div>
+                <h1 className="text-center font-bold">OR</h1>
+                <div className="form-control my-4">
+                  <button className="btn btn-primary">
+                    <GoogleOutlined className="mx-1" />
+                    Login With Google
+                  </button>
+                </div>
+              </Form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
