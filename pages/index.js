@@ -10,7 +10,7 @@ export default function Home() {
   };
 
   return (
-    <div data-theme="cupcake" className="flex flex-col items-center justify-center min-h-screen">
+    <div data-theme="cupcake" className="bg-base-200 flex flex-col items-center justify-center min-h-screen">
       <Head>
         <title>devFriend.io - Find your coding partener</title>
         <link rel="icon" href="/favicon.ico" />
@@ -91,6 +91,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <h1 className="">Designed and Developed by</h1>
+      <h1 className="mb-4 font-extrabold">Mukul Rajpoot</h1>
     </div>
   )
 }
