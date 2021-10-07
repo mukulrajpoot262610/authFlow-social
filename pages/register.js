@@ -19,7 +19,7 @@ const Register = () => {
 
             <div className="hero min-h-screen bg-base-200">
                 <div className="flex-col hero-content lg:flex-row w-full">
-                    <div className="">
+                    <div className="hidden lg:block">
                         <img src="/svgs/login.svg" alt="" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
