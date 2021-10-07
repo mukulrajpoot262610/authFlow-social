@@ -113,8 +113,6 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-            <h1 className="">Designed and Developed by</h1>
-            <h1 className="mb-4 font-extrabold">Mukul Rajpoot</h1>
         </div>
     )
 }
