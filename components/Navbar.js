@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { GithubOutlined } from '@ant-design/icons'
 import { Drawer, Button } from 'antd';
+import Link from 'next/link'
 
 const Navbar = () => {
 
@@ -16,7 +17,10 @@ const Navbar = () => {
     return (
         <div data-theme="cupcake" className="fixed top-0 z-50 backdrop-blur-xl w-full navbar mb-2 shadow-lg rounded-box">
             <div className="flex-1 px-2 mx-2">
-                <img src="/logo_text.png" alt="" height={200} width={200} />
+                <Link href="/">
+                    <img src="/logo_text.png" alt="" height={200} width={200} />
+                </Link>
+
             </div>
             <Drawer title="Basic Drawer" placement="right" onClose={onClose} visible={visible}
                 className="navbar"
