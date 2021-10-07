@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Form, Input, Button, Checkbox } from 'antd';
-import { GoogleOutlined, UserOutlined, LockOutlined } from '@ant-design/icons'
+import { GoogleOutlined, UserOutlined, GithubOutlined, LockOutlined } from '@ant-design/icons'
+import Link from 'next/link'
 
 export default function Home() {
 
@@ -22,6 +23,7 @@ export default function Home() {
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <div className="card-body">
+              <img src="/logo_text.png" alt="" className="mb-4" />
               <Form
                 name="normal_login"
                 className="login-form"
@@ -36,10 +38,9 @@ export default function Home() {
                   rules={[
                     {
                       required: true,
-                      message: 'Please input your Username!',
+                      message: 'Please input your email!',
                     },
                   ]}
-                  hasFeedback
                 >
                   <div className="form-control">
                     <Input
@@ -59,7 +60,6 @@ export default function Home() {
                       message: 'Please input your Password!',
                     },
                   ]}
-                  hasFeedback
                 >
                   <div className="form-control">
                     <Input
@@ -79,11 +79,14 @@ export default function Home() {
                 <h1 className="text-center font-bold">OR</h1>
                 <div className="form-control my-4">
                   <button className="btn btn-primary">
-                    <GoogleOutlined className="mx-1" />
-                    Login With Google
+                    <GithubOutlined className="mx-1" />
+                    Login With GitHub
                   </button>
+                  <h1 className="text-center mt-4"><Link href='/register' className="text-blue-400">Forgotten your password?</Link></h1>
                 </div>
               </Form>
+              <hr />
+              <h1 className="text-center mt-4">Don't have a account? <Link href='/register' className="text-blue-400">Register Now</Link></h1>
             </div>
           </div>
         </div>
