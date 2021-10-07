@@ -1,11 +1,14 @@
 import Head from 'next/head'
-import { Form, Input, message } from 'antd';
-import { GoogleOutlined, UserOutlined, GithubOutlined, LockOutlined } from '@ant-design/icons'
 import Link from 'next/link'
-
 import firebase from '../config/firebase';
 
+import { Form, Input, message } from 'antd';
+import { useRouter } from 'next/router'
+import { UserOutlined, GithubOutlined, LockOutlined } from '@ant-design/icons'
+
 export default function Home() {
+
+  const router = useRouter()
 
   const onFinish = async (values) => {
     console.log('Received values of form: ', values);
@@ -13,10 +16,10 @@ export default function Home() {
       .then((user) => {
         if (user.user.emailVerified) {
           message.success('Logged in Successfully 🎉')
+          router.push('/user/feed')
         } else {
           message.error('Please Verify your email first!')
         }
-        console.log("LOGIN", user)
       })
       .catch((err) => {
         message.error(err.message)
@@ -27,6 +30,7 @@ export default function Home() {
     await firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
       .then((user) => {
         message.success('Login Success 🎉')
+        router.push('/user/feed')
         console.log(user)
       }).catch((err) => {
         if (err.code === 'auth/account-exists-with-different-credential') {
@@ -35,10 +39,6 @@ export default function Home() {
           message.error(err.message)
         }
       })
-  }
-
-  const handlePasswordReset = async () => {
-    await firebase.auth().sendPasswordResetEmail()
   }
 
   return (

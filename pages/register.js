@@ -2,11 +2,14 @@ import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { Form, Input, message } from 'antd';
+import { useRouter } from 'next/router'
 import { GithubOutlined, UserOutlined, LockOutlined } from '@ant-design/icons'
 
 import firebase from '../config/firebase'
 
 const Register = () => {
+
+    const router = useRouter()
 
     const onFinish = async (values) => {
         console.log('Received values of form: ', values);
@@ -19,8 +22,7 @@ const Register = () => {
                 updated.sendEmailVerification()
                     .then(() => {
                         message.success('Email Verification Sent!, Check your mail')
-                        console.log("UPDATED", updated)
-                        console.log("USER", user)
+                        router.push('/')
                     })
             })
             .catch((err) => {
@@ -33,6 +35,9 @@ const Register = () => {
             .then((user) => {
                 message.success('Login Success 🎉')
                 console.log(user)
+                router.push('/user/feed')
+            }).catch((err) => {
+                message.error(err.message)
             })
     }
 

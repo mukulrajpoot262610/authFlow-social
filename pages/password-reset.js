@@ -10,13 +10,7 @@ const PasswordReset = () => {
 
     const router = useRouter()
     const onFinish = async (values) => {
-
-        const config = {
-            url: 'http://localhost:3000',
-            handleCodeInApp: true
-        }
-
-        await firebase.auth().sendPasswordResetEmail(values.email, config)
+        await firebase.auth().sendPasswordResetEmail(values.email)
             .then(() => {
                 message.success('Check your Mail!')
                 router.push('/')
