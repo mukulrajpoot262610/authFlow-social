@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer = ({ theme }) => {
     return (
-        <footer data-theme="cupcake" className="p-10 footer bg-base-300 footer-center">
+        <footer data-theme={theme} className="p-10 footer bg-base-300 footer-center">
             <div>
                 <img src="/logo.png" alt="" height={70} width={70} />
                 <p className="font-bold">devFriend.io

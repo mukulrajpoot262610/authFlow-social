@@ -42,7 +42,7 @@ const Register = () => {
     }
 
     return (
-        <div data-theme="cupcake" className="bg-base-200 flex flex-col items-center justify-center min-h-screen">
+        <div className="bg-base-200 flex flex-col items-center justify-center min-h-screen">
             <Head>
                 <title>devFriend.io - Find your coding partener</title>
                 <link rel="icon" href="/favicon.ico" />

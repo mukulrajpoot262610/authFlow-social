@@ -3,7 +3,7 @@ import { GithubOutlined } from '@ant-design/icons'
 import { Drawer, Button } from 'antd';
 import Link from 'next/link'
 
-const Navbar = () => {
+const Navbar = ({ theme }) => {
 
     const [visible, setVisible] = useState(false);
     const showDrawer = () => {
@@ -15,7 +15,7 @@ const Navbar = () => {
     const isAuth = true;
 
     return (
-        <div data-theme="cupcake" className="fixed top-0 z-50 backdrop-blur-xl w-full navbar mb-2 shadow-lg rounded-box">
+        <div data-theme={theme} className="fixed top-0 z-50 backdrop-blur-xl w-full navbar mb-2 shadow-lg rounded-box">
             <div className="flex-1 px-2 mx-2">
                 <Link href="/">
                     <img src="/logo_text.png" alt="" height={200} width={200} />

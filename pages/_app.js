@@ -4,8 +4,7 @@ import '../style/global.css'
 
 import store from '../store/store'
 import FirebaseAuthState from '../config/FirebaseAuthState'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import Layout from '../components/Layout'
 
 
 function MyApp({ Component, pageProps }) {
@@ -13,9 +12,9 @@ function MyApp({ Component, pageProps }) {
     <>
       <Provider store={store}>
         <FirebaseAuthState>
-          <Navbar />
-          <Component  {...pageProps} />
-          <Footer />
+          <Layout>
+            <Component  {...pageProps} />
+          </Layout>
         </FirebaseAuthState>
       </Provider>
     </>
