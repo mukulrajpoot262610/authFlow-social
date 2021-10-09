@@ -4,13 +4,17 @@ import '../style/global.css'
 
 import store from '../store/store'
 import FirebaseAuthState from '../config/FirebaseAuthState'
+import Layout from '../components/Layout'
+
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Provider store={store}>
         <FirebaseAuthState>
-          <Component  {...pageProps} />
+          <Layout>
+            <Component  {...pageProps} />
+          </Layout>
         </FirebaseAuthState>
       </Provider>
     </>

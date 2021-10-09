@@ -1,17 +1,48 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, message } from 'antd';
+import { useRouter } from 'next/router'
 import { GithubOutlined, UserOutlined, LockOutlined } from '@ant-design/icons'
+
+import firebase from '../config/firebase'
 
 const Register = () => {
 
-    const onFinish = (values) => {
+    const router = useRouter()
+
+    const onFinish = async (values) => {
         console.log('Received values of form: ', values);
+        await firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
+            .then((user) => {
+                const updated = firebase.auth().currentUser;
+                updated.updateProfile({
+                    displayName: values.text
+                })
+                updated.sendEmailVerification()
+                    .then(() => {
+                        message.success('Email Verification Sent!, Check your mail')
+                        router.push('/')
+                    })
+            })
+            .catch((err) => {
+                message.error(err.message)
+            })
     };
 
+    const handleGithubLogin = async () => {
+        await firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
+            .then((user) => {
+                message.success('Login Success 🎉')
+                console.log(user)
+                router.push('/user/feed')
+            }).catch((err) => {
+                message.error(err.message)
+            })
+    }
+
     return (
-        <div data-theme="cupcake" className="flex flex-col items-center justify-center min-h-screen">
+        <div className="bg-base-200 flex flex-col items-center justify-center min-h-screen">
             <Head>
                 <title>devFriend.io - Find your coding partener</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -19,16 +50,16 @@ const Register = () => {
 
             <div className="hero min-h-screen bg-base-200">
                 <div className="flex-col hero-content lg:flex-row w-full">
-                    <div className="">
+                    <div className="hidden lg:block">
                         <img src="/svgs/login.svg" alt="" />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
                             <img src="/logo_text.png" alt="" className="mb-4" />
                             <h1 className="text-center mb-4 font-bold">SignUp to find peer developers</h1>
-                            <button className="btn btn-primary">
+                            <button className="btn btn-primary" onClick={handleGithubLogin}>
                                 <GithubOutlined className="mx-1" />
-                                Login With GitHub
+                                Continue With GitHub
                             </button>
                             <h1 className="text-center font-bold mt-4">OR</h1>
                             <Form
@@ -102,7 +133,7 @@ const Register = () => {
                                 </Form.Item>
                                 <div className="form-control my-4">
                                     <button className="btn btn-primary">
-                                        Login
+                                        Register
                                     </button>
                                 </div>
                                 <h1 className="text-center text-xs mb-4">By signing up, you agree to our Terms, Data Policy and Cookie Policy.</h1>
