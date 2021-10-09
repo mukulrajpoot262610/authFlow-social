@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import withAuth from '../../utils/withAuth'
 
 const feed = () => {
     return (
@@ -14,4 +15,4 @@ const feed = () => {
     )
 }
 
-export default feed
+export default withAuth(feed)

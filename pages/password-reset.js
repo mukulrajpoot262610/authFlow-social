@@ -5,6 +5,7 @@ import { Form, Input, message } from 'antd';
 import { GoogleOutlined, UserOutlined, GithubOutlined, LockOutlined } from '@ant-design/icons'
 
 import firebase from '../config/firebase';
+import withoutAuth from '../utils/withoutAuth';
 
 const PasswordReset = () => {
 
@@ -74,4 +75,4 @@ const PasswordReset = () => {
     )
 }
 
-export default PasswordReset
+export default withoutAuth(PasswordReset)

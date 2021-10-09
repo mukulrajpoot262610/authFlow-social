@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { GithubOutlined, UserOutlined, LockOutlined } from '@ant-design/icons'
 
 import firebase from '../config/firebase'
+import withoutAuth from '../utils/withoutAuth';
 
 const Register = () => {
 
@@ -148,4 +149,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default withoutAuth(Register)
