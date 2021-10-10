@@ -5,8 +5,9 @@ import firebase from '../config/firebase';
 import { Form, Input, message } from 'antd';
 import { useRouter } from 'next/router'
 import { UserOutlined, GithubOutlined, LockOutlined } from '@ant-design/icons'
+import withoutAuth from '../utils/withoutAuth';
 
-export default function Home() {
+function Home() {
 
   const router = useRouter()
 
@@ -112,13 +113,11 @@ export default function Home() {
                   </button>
                 </div>
                 <h1 className="text-center font-bold">OR</h1>
-                <div className="form-control my-4">
-                  <button className="btn btn-primary" onClick={handleGithubLogin}>
-                    <GithubOutlined className="mx-1" />
-                    Login With GitHub
-                  </button>
-                </div>
               </Form>
+              <button className="btn btn-primary w-full" onClick={handleGithubLogin}>
+                <GithubOutlined className="mx-1" />
+                Login With GitHub
+              </button>
               <h1 className="text-center mt-4">Don't have an account? <Link href='/register' className="text-blue-400">Register Now</Link></h1>
             </div>
           </div>
@@ -127,3 +126,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default withoutAuth(Home)

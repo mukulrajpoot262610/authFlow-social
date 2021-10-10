@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-const withAuth = (WrappedComponent) => {
+const withoutAuth = (WrappedComponent) => {
     return (props) => {
         // checks whether we are on client / browser or server.
         if (typeof window !== "undefined") {
@@ -9,8 +9,8 @@ const withAuth = (WrappedComponent) => {
             const accessToken = localStorage.getItem("TOKEN");
 
             // If there is no access token we redirect to "/" page.
-            if (!accessToken) {
-                Router.replace("/");
+            if (accessToken) {
+                Router.replace("/user/feed");
                 return null;
             }
 
@@ -24,4 +24,4 @@ const withAuth = (WrappedComponent) => {
     };
 };
 
-export default withAuth;
+export default withoutAuth;
