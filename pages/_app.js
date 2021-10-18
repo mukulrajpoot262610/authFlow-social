@@ -1,11 +1,10 @@
-import { Provider } from 'react-redux'
-import 'tailwindcss/tailwind.css'
-import '../style/global.css'
+import { Provider } from "react-redux";
+import "tailwindcss/tailwind.css";
+import "../style/global.css";
 
-import store from '../store/store'
-import FirebaseAuthState from '../config/FirebaseAuthState'
-import Layout from '../components/Layout'
-
+import store from "../store/store";
+import FirebaseAuthState from "../config/FirebaseAuthState";
+import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -13,12 +12,12 @@ function MyApp({ Component, pageProps }) {
       <Provider store={store}>
         <FirebaseAuthState>
           <Layout>
-            <Component  {...pageProps} />
+            <Component {...pageProps} />
           </Layout>
         </FirebaseAuthState>
       </Provider>
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

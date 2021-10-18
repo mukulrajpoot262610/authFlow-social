@@ -19,3 +19,25 @@ html {
   border-radius: 1rem;
   background-color: #2a2b2f;
 }
+
+/* Detailed form CSS */
+
+.ant-steps-item-process>.ant-steps-item-container>.ant-steps-item-icon {
+  background: #65c3c8;
+}
+
+.ant-steps-item-process .ant-steps-item-icon {
+  background-color: #fff;
+  border-color: #65c3c8;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon {
+  background-color: #fff;
+  border-color: #65c3c8;
+}
+
+.ant-steps-item-finish .ant-steps-item-icon>.ant-steps-icon {
+  color: #65c3c8;
+}
+
+/* ********************************************************************** */
