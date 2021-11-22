@@ -61,7 +61,7 @@ const NewPassword = () => {
                                     ]}
                                 >
                                     <div className="form-control">
-                                        <Input
+                                        <Input.Password
                                             type="password"
                                             placeholder="password"
                                             className="input input-bordered"
@@ -81,7 +81,7 @@ const NewPassword = () => {
                                     ]}
                                 >
                                     <div className="form-control">
-                                        <Input
+                                        <Input.Password
                                             type="password"
                                             className="input input-bordered"
                                             prefix={<LockOutlined className="site-form-item-icon" />}

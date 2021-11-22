@@ -43,7 +43,7 @@ const Register = () => {
     return (
         <div className="bg-base-200 flex flex-col items-center justify-center min-h-screen">
             <Head>
-                <title>devFriend.io - Find your coding partener</title>
+                <title>authFlow</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
@@ -55,7 +55,6 @@ const Register = () => {
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
                             <img src="/logo_text.png" alt="" className="mb-4" />
-                            <h1 className="text-center mb-4 font-bold">SignUp to find peer developers</h1>
                             <button className="btn btn-primary" onClick={handleGithubLogin}>
                                 <GithubOutlined className="mx-1" />
                                 Continue With GitHub
@@ -78,7 +77,7 @@ const Register = () => {
                                             message: 'Please input your Username!',
                                         },
                                     ]}
-                                    hasFeedback
+
                                 >
                                     <div className="form-control">
                                         <Input
@@ -98,7 +97,6 @@ const Register = () => {
                                             message: 'Please input your Name!',
                                         },
                                     ]}
-                                    hasFeedback
                                 >
                                     <div className="form-control">
                                         <Input
@@ -118,10 +116,10 @@ const Register = () => {
                                             message: 'Please input your Password!',
                                         },
                                     ]}
-                                    hasFeedback
+
                                 >
                                     <div className="form-control">
-                                        <Input
+                                        <Input.Password
                                             type="password"
                                             placeholder="password"
                                             className="input input-bordered"
