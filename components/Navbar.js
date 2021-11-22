@@ -17,10 +17,24 @@ const Navbar = ({ theme }) => {
                 message.success('Logged Out Successfully')
                 router.replace('/')
                 localStorage.clear()
-                console.log(res)
             })
             .catch((err) => {
                 message.error(err.message)
+            })
+    }
+
+    const handleGithubLogin = async () => {
+        await firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
+            .then((user) => {
+                message.success('Login Success 🎉')
+                router.push('/user/feed')
+                console.log(user)
+            }).catch((err) => {
+                if (err.code === 'auth/account-exists-with-different-credential') {
+                    message.error('Account with this email already exist')
+                } else {
+                    message.error(err.message)
+                }
             })
     }
 
@@ -62,7 +76,7 @@ const Navbar = ({ theme }) => {
                     </>
                 ) : (
                     <div className="px-2 mr-4">
-                        <button className="btn btn-primary">
+                        <button onClick={handleGithubLogin} className="btn btn-primary">
                             <GithubOutlined className="mx-1" />
                             Login With GitHub
                         </button>

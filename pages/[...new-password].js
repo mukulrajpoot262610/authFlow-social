@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { Form, Input, message } from 'antd';
 import { GoogleOutlined, UserOutlined, GithubOutlined, LockOutlined } from '@ant-design/icons'
@@ -7,18 +8,25 @@ import { GoogleOutlined, UserOutlined, GithubOutlined, LockOutlined } from '@ant
 import firebase from '../config/firebase';
 import withoutAuth from '../utils/withoutAuth';
 
-const PasswordReset = () => {
+const NewPassword = () => {
+
 
     const router = useRouter()
+    console.log(router.query.oobCode)
     const onFinish = async (values) => {
-        await firebase.auth().sendPasswordResetEmail(values.email)
-            .then(() => {
-                message.success('Check your Mail!')
+
+        if (values.password !== values.cpassword) {
+            return message.error('Password should Match !')
+        }
+
+
+
+        await firebase.auth().confirmPasswordReset(router.query.oobCode, values.password)
+            .then(res => {
+                message.success('Password has been changed, you acn login now!')
                 router.push('/')
             })
-            .catch((err) => {
-                message.error(err.message)
-            })
+            .catch(err => message.error(err.message))
     }
 
     return (
@@ -43,27 +51,47 @@ const PasswordReset = () => {
                                 onFinish={onFinish}
                             >
                                 <Form.Item
-                                    name="email"
+                                    name="password"
                                     className="my-4"
                                     rules={[
                                         {
                                             required: true,
-                                            message: 'Please input your email!',
+                                            message: 'Please input your Password!',
                                         },
                                     ]}
                                 >
                                     <div className="form-control">
                                         <Input
-                                            type="email"
-                                            placeholder="email"
+                                            type="password"
+                                            placeholder="password"
                                             className="input input-bordered"
-                                            prefix={<UserOutlined className="site-form-item-icon" />}
+                                            prefix={<LockOutlined className="site-form-item-icon" />}
+                                            placeholder="Password"
+                                        />
+                                    </div>
+                                </Form.Item>
+                                <Form.Item
+                                    name="cpassword"
+                                    className="my-4"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input your Password!',
+                                        },
+                                    ]}
+                                >
+                                    <div className="form-control">
+                                        <Input
+                                            type="password"
+                                            className="input input-bordered"
+                                            prefix={<LockOutlined className="site-form-item-icon" />}
+                                            placeholder="Confirm Password"
                                         />
                                     </div>
                                 </Form.Item>
                                 <div className="form-control my-4 mt-8">
                                     <button className="btn btn-primary">
-                                        Send Password Reset Link
+                                        Reset Password
                                     </button>
                                 </div>
                             </Form>
@@ -75,4 +103,4 @@ const PasswordReset = () => {
     )
 }
 
-export default withoutAuth(PasswordReset)
+export default withoutAuth(NewPassword)

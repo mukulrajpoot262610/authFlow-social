@@ -1,6 +1,6 @@
 // @route  GET api/firebase/user
 // @desc   Auth User via firebase and get Profile
-// @access PRIVATE
+// @access PUBLIC
 export const regsiterUser = async (req, res) => {
     res.status(200).json(req.currentUser)
 }
