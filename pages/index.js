@@ -91,7 +91,7 @@ function Home() {
                   ]}
                 >
                   <div className="form-control">
-                    <Input
+                    <Input.Password
                       type="password"
                       placeholder="password"
                       className="input input-bordered"
