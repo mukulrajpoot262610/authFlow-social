@@ -10,12 +10,16 @@ import withoutAuth from '../utils/withoutAuth';
 
 const NewPassword = () => {
 
+
     const router = useRouter()
+    console.log(router.query.oobCode)
     const onFinish = async (values) => {
 
         if (values.password !== values.cpassword) {
             return message.error('Password should Match !')
         }
+
+
 
         await firebase.auth().confirmPasswordReset(router.query.oobCode, values.password)
             .then(res => {

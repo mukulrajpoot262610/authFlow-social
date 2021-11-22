@@ -19,12 +19,10 @@ const Register = () => {
                 const updated = firebase.auth().currentUser;
                 updated.updateProfile({
                     displayName: values.text
+                }).then((res) => {
+                    message.success('Registration Successfull 🎉!')
+                    router.push('/')
                 })
-                updated.sendEmailVerification()
-                    .then(() => {
-                        message.success('Email Verification Sent!, Check your mail')
-                        router.push('/')
-                    })
             })
             .catch((err) => {
                 message.error(err.message)

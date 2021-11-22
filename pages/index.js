@@ -15,12 +15,8 @@ function Home() {
     console.log('Received values of form: ', values);
     await firebase.auth().signInWithEmailAndPassword(values.email, values.password)
       .then((user) => {
-        if (user.user.emailVerified) {
-          message.success('Logged in Successfully 🎉')
-          router.push('/user/feed')
-        } else {
-          message.error('Please Verify your email first!')
-        }
+        message.success('Logged in Successfully 🎉')
+        router.push('/user/feed')
       })
       .catch((err) => {
         message.error(err.message)
