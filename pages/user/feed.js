@@ -6,7 +6,7 @@ const feed = () => {
     return (
         <div className="bg-base-200 flex flex-col items-center justify-center min-h-screen">
             <Head>
-                <title>devFriend.io - Find your coding partener</title>
+                <title>AuthFlow</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
